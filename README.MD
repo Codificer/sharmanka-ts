@@ -51,7 +51,7 @@ Sharmanka.onTick(someFunction);
 * removeObserver(observer: SharmankaObserver) - remove observer
 
 ```ts
-//
+//components/SomeComponent/index.ts
  const [time, setTime] = useState(0);
 
  useEffect(() => {
@@ -69,8 +69,7 @@ Sharmanka.onTick(someFunction);
    };
  }, []);
 
-***
-
+//components/SharmankaWrapper/index.ts
   Sharmanka.onTick(() => {
    Sharmanka.observers.forEach((obs: SharmankaObserver) => obs.onTick(Sharmanka.currentTime));
   });
@@ -112,7 +111,6 @@ export default function SharmankaWrapper(){
 
     return null;
 }
-***
 
 //mainLayout.tsx
 import SharmankWrapper from @components/SharmankaWrapper
