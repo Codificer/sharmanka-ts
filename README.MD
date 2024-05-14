@@ -1,7 +1,7 @@
 # HTML5 audio player
 
 This module is an modified version of [Sharmanka](https://www.npmjs.com/package/sharmanka?activeTab=readme).
-I add TypeScript support and make some mnor changes in code.
+I add TypeScript support and make some minor changes in code.
 
 This is a React audio player that allows you to fully control the playback of audio files.
 The player object is returned from the module, so it will be available at all points in the project.
@@ -51,6 +51,7 @@ Sharmanka.onTick(someFunction);
 * removeObserver(observer: SharmankaObserver) - remove observer
 
 ```ts
+//
  const [time, setTime] = useState(0);
 
  useEffect(() => {
@@ -68,11 +69,8 @@ Sharmanka.onTick(someFunction);
    };
  }, []);
 
-```
-
 ***
 
-```ts
   Sharmanka.onTick(() => {
    Sharmanka.observers.forEach((obs: SharmankaObserver) => obs.onTick(Sharmanka.currentTime));
   });
@@ -114,20 +112,19 @@ export default function SharmankaWrapper(){
 
     return null;
 }
-```
-
 ***
 
-```ts
 //mainLayout.tsx
 import SharmankWrapper from @components/SharmankaWrapper
 export default function RootLayout(){
 
-    return(<html>
-        <body>
-            <SharmankaWrapper />
-            {children}
-        </body>
-    </html>);
+    return(
+        <html>
+            <body>
+                <SharmankaWrapper />
+                {children}
+            </body>
+        </html>
+    );
 }
 ```
