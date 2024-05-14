@@ -1,7 +1,6 @@
 "use strict";
 
-import { SharmankaType } from './index.d';
-
+import { SharmankaType } from "./types/sharmanka";
 
 function _instanceof(left, right) {
 	if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) {
@@ -17,8 +16,8 @@ const Sharmanka:SharmankaType = {
 	duration: 0,
 	currentTime: 0,
 	buffered: 0,
-	preloadAllow: false,
 	isUnlockedAudio: false,
+	observers: [], 
 	init: function () {
 		this.node = document.createElement('audio');
 
@@ -123,6 +122,20 @@ const Sharmanka:SharmankaType = {
 			console.error(e);
 		}
 	},
+	isMuted: function isMuted(){
+		try {
+			return this.node.muted;
+		} catch (e) {
+			console.error(e);
+		}
+	},
+	isLooped: function isLooped(){
+		try {
+			return this.node.loop;
+		} catch (e) {
+			console.error(e);
+		}
+	},
 	play: function play(callback) {
 		try {
 			if (_instanceof(callback, Function)) callback();
@@ -143,13 +156,6 @@ const Sharmanka:SharmankaType = {
 			console.error(e);
 		}
 	},
-	preload: function preload(callback) {
-		try {
-			if (_instanceof(callback, Function) && !!this.preloadAllow) callback();
-		} catch (e) {
-			console.error(e);
-		}
-	},
 	volume: function volume(value) {
 			if (typeof value === 'number' && value >= 0 && value <= 1) this.node.volume = value;
 			if (typeof value !== 'number') console.error('Volume value should be a number');
@@ -159,6 +165,13 @@ const Sharmanka:SharmankaType = {
 		try {
 			this.node.muted = !this.node.muted;
 		} catch (e) {
+			console.error(e);
+		}
+	},
+	loop: function setLoop(loop){
+		try {
+			this.node.loop = loop;
+		} catch (e){
 			console.error(e);
 		}
 	},
@@ -211,6 +224,15 @@ const Sharmanka:SharmankaType = {
 			}
 		}
 	},
+	addObserver: function addObserver (observer) {
+		this.observers.push(observer)
+	},
+	removeObserver: function removeObserver(observer) {
+		const index = Sharmanka.observers.findIndex((el) => observer === el);
+
+		if (index !== -1)
+			Sharmanka.observers = Sharmanka.observers.filter((_, i: number) => i !== index);
+	}
 };
 
 export default Sharmanka;

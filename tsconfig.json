@@ -1,8 +1,10 @@
 {
     "compilerOptions": {
-        "outDir": "build/esm",
+        "outDir": "dist",
+        "declaration": true,
+        "declarationDir": ".",
         "module": "esnext",
-        "target": "es5",
+        "target": "es6",
         "lib": [
             "es6",
             "dom",
@@ -10,17 +12,15 @@
             "es2017"
         ],
         "jsx": "react",
-        "declaration": true,
-        "declarationDir": "build/types",
         "moduleResolution": "node",
         "allowSyntheticDefaultImports": true,
-        "esModuleInterop": true,
+        "esModuleInterop": true
     },
     "include": [
-        "src"
+        "src/**/*.ts"
     ],
     "exclude": [
         "node_modules",
-        "build"
+        "dist"
     ]
 }

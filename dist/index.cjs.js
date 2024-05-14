@@ -1,4 +1,5 @@
-"use strict";
+'use strict';
+
 function _instanceof(left, right) {
     if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) {
         return right[Symbol.hasInstance](left);
@@ -7,14 +8,14 @@ function _instanceof(left, right) {
         return left instanceof right;
     }
 }
-var Sharmanka = {
+const Sharmanka = {
     node: null,
     playPromise: null,
     duration: 0,
     currentTime: 0,
     buffered: 0,
-    preloadAllow: false,
     isUnlockedAudio: false,
+    observers: [],
     init: function () {
         this.node = document.createElement('audio');
         if (this.node) {
@@ -136,6 +137,22 @@ var Sharmanka = {
             console.error(e);
         }
     },
+    isMuted: function isMuted() {
+        try {
+            return this.node.muted;
+        }
+        catch (e) {
+            console.error(e);
+        }
+    },
+    isLooped: function isLooped() {
+        try {
+            return this.node.loop;
+        }
+        catch (e) {
+            console.error(e);
+        }
+    },
     play: function play(callback) {
         try {
             if (_instanceof(callback, Function))
@@ -147,25 +164,15 @@ var Sharmanka = {
         }
     },
     pause: function pause(callback) {
-        var _this = this;
         try {
             if (_instanceof(callback, Function))
                 callback();
             if (this.playPromise !== undefined) {
-                this.playPromise.then(function (_) { return _this.node.pause(); });
+                this.playPromise.then(_ => this.node.pause());
             }
             else {
                 this.node.pause();
             }
-        }
-        catch (e) {
-            console.error(e);
-        }
-    },
-    preload: function preload(callback) {
-        try {
-            if (_instanceof(callback, Function) && !!this.preloadAllow)
-                callback();
         }
         catch (e) {
             console.error(e);
@@ -182,6 +189,14 @@ var Sharmanka = {
     mute: function mute() {
         try {
             this.node.muted = !this.node.muted;
+        }
+        catch (e) {
+            console.error(e);
+        }
+    },
+    loop: function setLoop(loop) {
+        try {
+            this.node.loop = loop;
         }
         catch (e) {
             console.error(e);
@@ -238,5 +253,14 @@ var Sharmanka = {
             }
         }
     },
+    addObserver: function addObserver(observer) {
+        this.observers.push(observer);
+    },
+    removeObserver: function removeObserver(observer) {
+        const index = Sharmanka.observers.findIndex((el) => observer === el);
+        if (index !== -1)
+            Sharmanka.observers = Sharmanka.observers.filter((_, i) => i !== index);
+    }
 };
-export default Sharmanka;
+
+module.exports = Sharmanka;

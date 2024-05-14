@@ -1,17 +1,22 @@
 {
   "name": "sharmanka-ts",
-  "version": "0.2.1",
+  "version": "0.4.1",
   "description": "HTML5 Audio player for react app with typeScript",
-  "main": "./build/esm/index.js",
-  "module": "./build/esm/index.js",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
   "scripts": {
-    "build": "yarn build:esm",
-    "build:esm": "tsc"
+    "build:esm": "tsc",
+    "build": "rollup --config"
   },
   "keywords": [],
   "author": "Codificer",
   "license": "MIT",
   "devDependencies": {
-    "typescript": "^5.4.5"
+    "@rollup/plugin-typescript": "^11.1.6",
+    "rollup": "^4.17.2",
+    "tslib": "^2.6.2",
+    "typescript": "^5.5.0-dev.20240513"
   }
 }
