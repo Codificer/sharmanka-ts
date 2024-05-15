@@ -39,6 +39,7 @@ export declare type SharmankaType = {
     loop: (loop: boolean) => void;
     seek: (value: number) => void;
     setTrack: (value: string) => string | void;
+    clearTrack: () => void;
     togglePlay: () => boolean | void;
     listenerMoveMouse: (node: HTMLElement) => void;
     getDuration: () => void;

@@ -219,6 +219,9 @@ const Sharmanka = {
         if (typeof value !== "string" || value.length === 0)
             console.error('URL for track should be string by 1 character');
     },
+    clearTrack: function clearTrack() {
+        this.node.src = null;
+    },
     togglePlay: function togglePlay() {
         try {
             return this.node.paused ? this.node.play() : this.node.pause();
