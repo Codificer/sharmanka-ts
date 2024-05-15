@@ -191,7 +191,7 @@ const Sharmanka:SharmankaType = {
 			if (typeof value !== "string" || value.length === 0) console.error('URL for track should be string by 1 character');
 	},
 	clearTrack: function clearTrack() {
-		this.node.src=null;
+		this.node.src='';
 	},
 	togglePlay: function togglePlay() {
 		try {

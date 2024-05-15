@@ -222,7 +222,7 @@ const Sharmanka = {
             console.error('URL for track should be string by 1 character');
     },
     clearTrack: function clearTrack() {
-        this.node.src = null;
+        this.node.src = '';
     },
     togglePlay: function togglePlay() {
         try {

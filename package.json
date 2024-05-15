@@ -1,6 +1,6 @@
 {
   "name": "sharmanka-ts",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "HTML5 Audio player for react app with typeScript",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
