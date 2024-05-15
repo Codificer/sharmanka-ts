@@ -18,6 +18,7 @@ An example of usage will be below
 * seek(number) - set the moment on audio track (s|ms?).
 * loop(boolean) - set a looping of audio track.
 * setTrack(string) - set track by url.
+* clearTrack() - clear source url.
 * removeEvent(string, function) - remove function on selected event.
 
 ```ts
