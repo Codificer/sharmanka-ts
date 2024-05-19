@@ -18,5 +18,9 @@
     "rollup": "^4.17.2",
     "tslib": "^2.6.2",
     "typescript": "^5.5.0-dev.20240513"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Codificer/sharmanka-ts.git"
   }
 }
